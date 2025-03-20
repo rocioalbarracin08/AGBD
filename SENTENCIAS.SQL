@@ -1,6 +1,6 @@
 SENTENCIAS RECOMENDADAS EN " tinyurl.com/AGBD-5to-ETEC "
 
-/*Bucar en todas las columnas "SELECT *" (de la tabla "FROM INHABITANT")
+/*Bucar en todas las columnas " SELECT * " (de la tabla "FROM INHABITANT")
   segun la cantidad de datos dados "WHERE state ="friendly" AND job = "weaponsmith" 
   (sin el AND puede ser un solo dato)*/
 
