@@ -41,7 +41,7 @@ ssn: 111564949
 */
 
 /*Ordenar la lista - ORDER BY ... DESC (limit (num.): limitar la cantidad de resultados que aparezcan)
-Ascendente: de abajo arriba (mwnoe a mayor)
+Ascendente: de abajo arriba (menor a mayor)
 Descendente: de arriba abajo (mayor a menor)*/
 SELECT * FROM person 
 where address_street_name like "Northwestern Dr" /*dRespuestas solo del pueblito que busco*/
