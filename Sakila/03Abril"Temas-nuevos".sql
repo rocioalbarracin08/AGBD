@@ -9,7 +9,7 @@ SELECT count(*), c.name from film f
 INNER JOIN film_category fc ON f.film_id = fc.film_id
 INNER JOIN category c ON fc.category_id = c.category_id
 GROUP BY c.category_id/*El "cuantas" indica usar count()*/
-/*"Group BY" forma grupos de lo pedido (ej: un grupo con los que tengan este numero, o este color)*/
+/* "Group BY" forma grupos de lo pedido (ej: un grupo con los que tengan este numero, o este color)*/
 /*"count()" cuenta la cantidad de integrantes que formo el group by, sino contaria toda la tabla. Contar el número de filas que cumplen con una
 condición o el número total de filas en una columna.*/
 
@@ -28,15 +28,12 @@ GROUP BY f.film_id
 ORDER BY count(a.actor_id) DESC LIMIT 10 /*DESC: Descendente(de arriba abajo) / LIMIT: llamar solo los primeros 10 que aparezcan*/
 
 /*Cambiar de nombre a una columna*/
-SELECT columna1 AS nombre_avreviado_de_la_columna1, columna2 
+SELECT columna1 AS nombre_avreviado_de_la_columna1, columna2 /* "AS" -> Sirve para renombrar COLUMNAS, en "from" se le pone el cambio de nombre al lado */
 
 SELECT count(a.actor_id) AS nombre_avreviado, a.first_name, a.last_name 
 from film f 
 INNER JOIN film_actor fa ON f.film_id = fa.film_id
 INNER JOIN actor a ON fa.actor_id = a.actor_id
 GROUP BY f.film_id
-ORDER BY count(a.actor_id) DESC LIMIT 10
+ORDER BY count(a.actor_id) DESC LIMIT 10 /*MEJOR RESPUESTA*/
 
-/*Consigna: ¿Cuántos ejemplares (inventory) en total hay en cada local?  Como no hay nombre del local, poner en su lugar la dirección incluyendo ciudad y país además de la cantidad*/
-
-/*Consigna: */
