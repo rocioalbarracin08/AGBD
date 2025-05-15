@@ -1,10 +1,10 @@
 /**/
 
-/*Conigna: ¿Cuántas películas hay en cada tipo de "rating" (g, pg, pg13, r, nc17)?*/
+/*Conigna 6: ¿Cuántas películas hay en cada tipo de "rating" (g, pg, pg13, r, nc17)?*/
 SELECT count(*), rating from film /*EspecifiCAR A QUE CATEGORIA PERTENECE CADA VALOR DADO*/
 GROUP BY rating /*Agrupa según loas distintas categorias que encuntra en la columna (en este caso "rating")*/
 
-/*Consigna: ¿Cuántas películas hay en cada "categoría"?*/
+/*Consigna 7: ¿Cuántas películas hay en cada "categoría"?*/
 SELECT count(*), c.name from film f
 INNER JOIN film_category fc ON f.film_id = fc.film_id
 INNER JOIN category c ON fc.category_id = c.category_id
@@ -13,7 +13,7 @@ GROUP BY c.category_id/*El "cuantas" indica usar count()*/
 /*"count()" cuenta la cantidad de integrantes que formo el group by, sino contaria toda la tabla. Contar el número de filas que cumplen con una
 condición o el número total de filas en una columna.*/
 
-/*Consigna: Cuales son los 10 actores/actrices que más aparecen en las películas*/
+/*Consigna 8: Cuales son los 10 actores/actrices que más aparecen en las películas*/
 SELECT count(*), a.first_name, a.last_name /*sin ordenar de mayor a menor, formamos grupos segun el id de cada actor por la cant_de_films*/
 from film f 
 INNER JOIN film_actor fa ON f.film_id = fa.film_id

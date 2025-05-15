@@ -10,7 +10,14 @@ WHERE title = "Big Ones"
 ORDER by t.Milliseconds DESC
 
 -- 3 - Nombre de todos los géneros con la cantidad de canciones de cada uno
+SELECT count(TrackId)as cant_canciones, g.name 
+FROM tracks t
+INNER JOIN genres g on g.GenreId = t.GenreId
+GROUP by g.GenreId
+
 -- 4 - Nombre de los discos con al menos 5 canciones
+-- Disco: album / traks: canciones o pistas
+
 -- 5 - Nombre y precio total de los 10 discos más baratos
 -- 6 - Nombre del tema, nombre del género y nombre del disco del los temas que valen $0.99
 -- 7 - Nombre del tema, duración, nombre del disco y nombre del artista de los 20 temas más cortos
