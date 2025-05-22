@@ -1,0 +1,5 @@
+----------------- Disco: album / traks: canciones o pistas----------------------------------
+--10 - Mostrar las cuatro canciones ingresadas.
+--11 - Modifiquen dos (2) canciones por otras que se les ocurran.
+--12 - Mostrar las dos (2) canciones modificadas.
+--13 - Borrar dos (2) datos ingresados, realizando un solo delete.

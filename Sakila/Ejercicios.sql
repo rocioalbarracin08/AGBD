@@ -15,9 +15,9 @@ inner join city c on a.city_id = c.city_id
 inner join country co on c.country_id = co.country_id
 group by s.store_id /*En este caso store fue la unica tabla por la que solo pase por encima, tratando de ser un medio para encotrar coincidencia por las otras tablas*/
 
-/*-----------------------------------------------------
+/*......................................................
  "Cuantos/as" -> Si count nos da un numero grande es porque más adelante vamos a tener que agrupar, para agrupar usamos el id de las tiendas 
-----------------------------------------------------*/
+......................................................*/
 
 --------------------------------------------
 /*Consigna 10: ¿Cuántas películas distintas hay en cada local? Como no hay nombre del local, poner en su lugar la dirección incluyendo ciudad y país además de la cantidad*/
@@ -63,19 +63,32 @@ INNER JOIN film_actor fa on fa.film_id = f.film_id
 where title like "w%" 
 group by f.film_id --no por actores_id
 HAVING cantActores > 5
-
+ORDER BY cantActores ASC
 --------------------------------------------
 /*Consigna 15: Calcular la suma total de los pagos (amount) con nombre y apellido de cada cliente.*/
 SELECT sum(amount) as precioTotal, c.first_name, c.last_name FROM payment p
 INNER JOIN customer c on p.customer_id = c.customer_id
-order by c.customer_id
+GROUP by c.customer_id
 
 --------------------------------------------
 /*Consigna 16: Nombre de la pelicula, duración y nombre del actor de las peliculas más cortas.*/
+select f.title, f.length, a.first_name
+from film f
+INNER JOIN film_actor fa on f.film_id = fa.film_id
+INNER JOIN actor a on fa.actor_id = a.actor_id
+order by f.length asc
 
 --------------------------------------------
 /*Consigna 17: apellido del cliente con su ciudad, pais, direccion, sus alquileres y pagos, ordenado los pagos de menor a mayor.*/
-
+SELECT last_name, c.city, co.country, a.address, p.amount, r.rental_date 
+FROM customer cu
+INNER JOIN address a on a.address_id = cu.address_id 
+INNER JOIN city c on a.city_id = c.city_id
+INNER JOIN country co on co.country_id = c.country_id
+INNER JOIN rental r on r.customer_id = cu.customer_id
+INNER JOIN payment p on cu.customer_id = p.payment_id
+group by cu.last_name --El orden importa (primero agrupar y luego ordenar)
+order by p.amount asc
 
 --------------------------------------------
 /*Consigna 18: Insertarse uno mismo como actor con todos sus campos.*/
@@ -90,7 +103,12 @@ VALUES (204, "Celedonio", "Alvarez", "2025-05-15 07:12:31"),
 
 --------------------------------------------
 /*Consigna 20: Modificar los 3 datos ingresados por datos nuevos o de gente famosa.*/ 
---Nombres en mayúsculas
+update actor set first_name = 'Lupe', last_name = 'Reifo'
+WHERE actor_id = 204; 
+--No se pueden poner dos datos (para cambiar) en una sola columna (intencion de abreviar->X)
+--Cada columna solo recibe un dato para cambiar, por eso hacemos 2 updates
+UPDATE actor set first_name = 'Pepita', last_name = 'Ofier'
+WHERE actor_id = 205; --Al final de un update se pone ";" obligatoriamente para ejecutarlo
 
 --------------------------------------------
 /*Consigna 21: Borrar todos los datos ingresados finalmente.*/

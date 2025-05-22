@@ -1,3 +1,4 @@
+----------------- Disco: album / traks: canciones o pistas----------------------------------
 
 -- 1 - Nombre y Apellido de todos los empleados, en orden alfabético.
 SELECT FirstName, LastName FROM employees
@@ -16,14 +17,17 @@ INNER JOIN genres g on g.GenreId = t.GenreId
 GROUP by g.GenreId
 
 -- 4 - Nombre de los discos con al menos 5 canciones
--- Disco: album / traks: canciones o pistas
+SELECT a.Title, count(TrackId) as cantidad_canciones
+FROM tracks t
+INNER JOIN albums a on t.AlbumId = a.AlbumId
+GROUP by a.Title --Agrupamos por disco
+HAVING cantidad_canciones >=5
+order by cantidad_canciones ASC /*PREGUNTAR SI ESTA BIEN*/
 
 -- 5 - Nombre y precio total de los 10 discos más baratos
--- 6 - Nombre del tema, nombre del género y nombre del disco del los temas que valen $0.99
--- 7 - Nombre del tema, duración, nombre del disco y nombre del artista de los 20 temas más cortos
--- 8 - Apellido, puesto, apellido del jefe y cantidad de clientes que atiende de todos los empleados, ordenado desde los que atienden más clientes a los que atienden menos
--- 9 - Insertar cuatro (4) canciones que les gusten.
---10 - Mostrar las cuatro canciones ingresadas.
---11 - Modifiquen dos (2) canciones por otras que se les ocurran.
---12 - Mostrar las dos (2) canciones modificadas.
---13 - Borrar dos (2) datos ingresados, realizando un solo delete.
+SELECT a.Title, sum(UnitPrice) as precioTotal_album
+FROM tracks t 
+INNER join albums a on a.AlbumId = t.AlbumId
+GROUP by a.AlbumId --No es lo mismo agrupar por título que por ID, el id ("AlbumId") es único
+ORDER by precioTotal_album ASC
+limit 10
