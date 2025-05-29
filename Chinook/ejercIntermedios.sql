@@ -17,7 +17,7 @@ order by t.Milliseconds/*duración*/ ASC
 limit 20
 
 -- 8 - Apellido, puesto, apellido del jefe y cantidad de clientes que atiende de todos los empleados, ordenado desde los que atienden más clientes a los que atienden menos
-SELECT e.LastName as Apellido_Jefe/*empleados*/, e.Title/*puesto*/as puesto_jefe, count(cu.CustomerId)as cantidad_clientes, j.LastName as Apellido_empleado
+SELECT e.LastName as Apellido_Jefe, j.Title as puesto_empleado, count(cu.CustomerId)as cantidad_clientes, j.LastName as Apellido_empleado
 from employees e
 INNER JOIN employees j ON e.EmployeeId = j.ReportsTo--Renombrarr una tabla si se quiere volver a usar
 INNER join customers cu on cu.SupportRepId = j.EmployeeId
@@ -26,3 +26,8 @@ order by cantidad_clientes/*cantidad de clientes*/DESC
 --Lo que era del jefe pasa a ser del empleado
 
 -- 9 - Insertar cuatro (4) canciones que les gusten.
+insert INTO tracks (Name, MediaTypeId, Milliseconds, UnitPrice) 
+VALUES ( "Rirora", 2, 342562, 2),
+	   ( "Rirore", 2, 342562, 2),
+	   ( "Rurori", 2, 342562, 2),
+	   ( "Rirero", 2, 342562, 2)

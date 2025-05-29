@@ -1,0 +1,6 @@
+CREATE TABLE "PRODUCTOS" (
+	"id_product"	INTEGER,
+	"nombre"	VARCHAR(50) NOT NULL,
+	"id_category"	VARCHAR(50) NOT NULL,
+	PRIMARY KEY("id_product" AUTOINCREMENT)
+);
