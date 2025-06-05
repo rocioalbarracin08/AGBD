@@ -35,5 +35,13 @@ INNER join inventory i on f.film_id = i.film_id
 INNER JOIN rental r on i.inventory_id = r.inventory_id
 
 --------------------------------------------
-/*Ejercicio 5: ¿Se puede realizar una unión de todas las tablas? En caso de que se pueda realizar la sentencia que corresponde para unir las tablas. Seleccionando los datos que ustedes consideren necesarios de cada tabla.
-*/
+/*Ejercicio 5: ¿Se puede realizar una unión de todas las tablas? En caso de que se pueda realizar la sentencia que corresponde para unir las tablas. Seleccionando los datos que ustedes consideren necesarios de cada tabla.*/
+SELECT a.first_name, f.title, l.name, c.name
+from actor a
+INNER JOIN film_actor fa on a.actor_id = fa.actor_id
+INNER JOIN film f on fa. film_id = f.film_id --Título de la película
+INNER JOIN language l on f.language_id = l.language_id --lenguage
+INNER JOIN film_category fc on f.film_id = fc.film_id 
+INNER JOIN category c on fc.category_id = c.category_id --Categoría
+INNER JOIN inventory i on i.film_id = f.film_id
+INNER JOIN film_text ft on i.film_id = ft.film_id -- Descripción (no hay nada) - Lado azul
