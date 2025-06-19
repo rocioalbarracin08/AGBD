@@ -7,23 +7,23 @@ CREATE TABLE "categoria" (
 );
 
 CREATE TABLE "clientes" (
-    "id_cliente" INTEGER,
-    "name" varchar(30) NOT NULL UNIQUE,
-    "apellido" varchar(30) NOT NULL UNIQUE, 
-    "genes" INTEGER UNIQUE,--quizas alguien no quiera decir su genero
-    "email" varchar(30) NOT NULL UNIQUE,   
+    "id_cliente" 	INTEGER,
+    "name" 			varchar(30) NOT NULL UNIQUE,
+    "apellido" 		varchar(30) NOT NULL UNIQUE, 
+    "género" 		NUMERIC UNIQUE,--quizas alguien no quiera decir su genero (1:mujer 0:hombre)
+    "email" 		varchar(30) NOT NULL UNIQUE,   
     PRIMARY KEY("id_cliente" AUTOINCREMENT)
 );
 
 CREATE TABLE "metodos_pagos" (
-    "id_metodo_pago" INTEGER,
-    "name" varchar(30) NOT NULL UNIQUE,
+    "id_metodo_pago" 	INTEGER,
+    "name" 				varchar(30) NOT NULL UNIQUE,
     PRIMARY KEY("id_metodo_pago" AUTOINCREMENT)
 );
 
 CREATE TABLE "clientes_pago" (
-    "id_pago" INTEGER,
-    "id_cliente" INTEGER,
+    "id_pago" 		 INTEGER,
+    "id_cliente" 	 INTEGER,
     "id_metodo_pago" INTEGER,
     PRIMARY KEY("id_pago" AUTOINCREMENT)
     FOREIGN KEY ("id_cliente") REFERENCES clientes("id_cliente")
@@ -32,9 +32,9 @@ CREATE TABLE "clientes_pago" (
 
 CREATE TABLE "productos" (
     "id_producto"   INTEGER,
-    "name"  INTEGER NOT NULL,
-    "id_categoria" INTEGER NOT NULL,
-    "precio" INTEGER NOT NULL,--cantidad fija o variable , si es variable debe ser una tabla intermedia
+    "name"  		VARCHAR(50) NOT NULL,
+    "id_categoria"  INTEGER NOT NULL,
+    "precio"		NUMERIC NOT NULL,--cantidad fija o variable , si es variable debe ser una tabla intermedia
     PRIMARY KEY("id_producto" AUTOINCREMENT), --DE ESTA TABLA ES EL ID MAS IMPORTANTE, 
     FOREIGN KEY ("id_categoria") REFERENCES categoria("id_category") --SACADA DE OTRA TABLA
 );
@@ -57,11 +57,11 @@ CREATE TABLE "tiendas" ( --locales (página vitual cuenta?)
 
 CREATE TABLE "empleados" ( --datos de los empleado
 	"id_empleado" 	 INTEGER,
-	"nombre"		 VARCHAR(40) NOT null UNIQUE, --Dudoso, podemos rechazar a un empledo por repetir el nombre
-	"apellido"		 VARCHAR(40) NOT NULL UNIQUE,
-	"id_tienda" 	 INTEGER NOT NULL UNIQUE,
+	"nombre"		 VARCHAR(40) NOT null , 
+	"apellido"		 VARCHAR(40) NOT NULL ,
+	"id_tienda" 	 INTEGER NOT NULL ,
 	"puesto_trabajo" VARCHAR(50) NOT NULL,
-	"email"			 VARCHAR(50) NOT NULL UNIQUE,
+	"email"			 VARCHAR(50) NOT NULL ,
 	"teléfono"		 NUMERIC NOT NULL UNIQUE,
 	PRIMARY KEY("id_empleado" AUTOINCREMENT),
 	FOREIGN KEY("id_tienda") REFERENCES tiendas("id_tienda")
@@ -77,9 +77,9 @@ CREATE TABLE "cant_productos" (
 
 CREATE TABLE "ventas" (
 	"id_venta"		INTEGER,
-	"día"			INTEGER NOT null,	
-	"mes"			INTEGER NOT null,
-	"año"			INTEGER NOT null,
+	"día"			NUMERIC NOT null,	
+	"mes"			NUMERIC NOT null,
+	"año"			NUMERIC NOT null,
 	"id_pago"		INTEGER NOT NULL,
 	"costo_total" 	INTEGER NOT NULL, -- Cuentita: multiplicar precio del producto por la cantidad 
 	"id_empleado"	INTEGER NOT NULL,
